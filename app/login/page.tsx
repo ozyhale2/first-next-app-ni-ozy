@@ -1,8 +1,28 @@
 import React from 'react'
+import { PrismaClient } from '@prisma/client'
+import { z } from 'zod'
+import bcrypt from 'bcrypt'
+
+const prisma = new PrismaClient();
+const schema = z.coerce.string();
 
 async function login(data: FormData){
     "use server"
-    console.log('test');
+
+    const password = schema.parse(data.get('password'))
+    
+    const user = await prisma.user.findUnique({
+        where: {
+            email: schema.parse(data.get('email'))
+        }
+    });
+
+    if(user !== null){
+        let results =  await bcrypt.compare(password, user.password);
+        console.log(results);
+    }
+
+    console.log(user);
 }
 
 const LoginPage = () => {
