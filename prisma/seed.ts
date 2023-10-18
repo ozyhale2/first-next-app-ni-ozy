@@ -1,5 +1,8 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
+
 const prisma = new PrismaClient()
+
 async function main() {
     const superAdminRole = await prisma.role.upsert({
         where: { id: 1 },
@@ -25,11 +28,18 @@ async function main() {
         }
     })
 
+    const adminUserPassword = process.env.SUPER_ADMIN_PASSWORD;
+    if(adminUserPassword === undefined){
+        throw new Error("SUPER_ADMIN_PASSWORD should be exists");
+    }
+
+    const hashedPassword = await bcrypt.hash(adminUserPassword, 10);
     const adminUser = await prisma.user.upsert({
         where: { id: 1 },
         update: {},
         create: {
-            email: "admin@email.com",
+            email: "superadmin@email.com",
+            password: hashedPassword,
             name: 'Administrator',
             roleId: 1,
         }
