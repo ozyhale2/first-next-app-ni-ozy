@@ -2,6 +2,7 @@ import React from 'react'
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
 const zCoerceStr = z.coerce.string();
 const zNum = z.number();
@@ -23,7 +24,18 @@ async function createLinkInBio(data: FormData) {
         const description = zCoerceStr.parse(data.get('description'))
         const userId = zNum.parse(user.id)
 
-        console.log({name, description, userId});
+        const linkInBio = await prisma.linkInBio.create({
+            data: {
+                name: name, 
+                description: description,
+                ownerId: userId
+            }
+        });
+
+        console.log('linkInBio Added: ')
+        console.log(linkInBio);
+
+        redirect('/admin/linkinbio/' + linkInBio.id)
     }
     
 }
