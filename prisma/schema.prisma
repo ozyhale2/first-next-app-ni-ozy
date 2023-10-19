@@ -34,7 +34,7 @@ model LinkInBio {
   id          Int      @id @default(autoincrement())
   name        String
   description String?
-  slug        String
+  slug        String   @default(uuid())
   owner       User     @relation(fields: [ownerId], references: [id])
   ownerId     Int
   links       Links[]
