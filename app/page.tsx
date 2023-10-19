@@ -6,7 +6,10 @@ import Link from 'next/link';
 export default async function Home() {
   const session = await getServerSession();
 
+  console.log('--------------');
+  console.log('CURRENT USER: ');
   console.log(session?.user);
+  console.log('--------------');
 
   return (
     <>
@@ -16,13 +19,13 @@ export default async function Home() {
             {session?.user ? (
               <>
                 <h1 className="text-5xl font-bold">Hello {session.user.name}</h1>
-                <p className="py-6">Welcome to my first ever nextjs application. In this application, I will create a `linktree` like application</p>
-                <Link className="btn btn-primary" href="/linktree">Get Started</Link>
+                <p className="py-6">{process.env.description}</p>
+                <Link className="btn btn-primary" href="/linkinbio">Get Started</Link>
               </>
             ) : (
               <>
                 <h1 className="text-5xl font-bold">Hello there</h1>
-                <p className="py-6">Welcome to my first ever nextjs application. In this application, I will create a `linktree` like application</p>
+                <p className="py-6">{process.env.description}</p>
                 <SessionProvider session={session}>
                   <LoginButton />
                 </SessionProvider>

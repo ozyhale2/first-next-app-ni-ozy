@@ -5,7 +5,7 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 const LoginLink = () => {
     const {data: session} = useSession();
     return (
-        <button onClick={() => session ? signOut() : signIn()}>
+        <button className={session ? "text-error hover:text-error" : ""} onClick={() => session ? signOut() : signIn()}>
             {session ? "Logout" : "Login"}
         </button>
     )

@@ -6,8 +6,8 @@ import NavBar from './components/navBar/NavBar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'First NextJS App Ni Ozy',
-  description: 'Welcome to my first ever nextjs application. In this application, I will create a `link in bio`',
+  title: process.env.title,
+  description: process.env.description,
 }
 
 export default function RootLayout({

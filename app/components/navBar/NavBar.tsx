@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import LoginLink from './LoginLink';
+import LoginLink from './AuthLink';
 import { getServerSession } from 'next-auth';
 import SessionProvider from './SessionProvider';
 
