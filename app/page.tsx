@@ -20,7 +20,7 @@ export default async function Home() {
               <>
                 <h1 className="text-5xl font-bold">Hello {session.user.name}</h1>
                 <p className="py-6">{process.env.description}</p>
-                <Link className="btn btn-primary" href="/linkinbio">Get Started</Link>
+                <Link className="btn btn-primary" href="admin/linkinbio">Get Started</Link>
               </>
             ) : (
               <>

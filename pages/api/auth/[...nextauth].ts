@@ -35,8 +35,6 @@ export const authOptions: NextAuthOptions = {
 
                 if(user){
                     let results =  await bcrypt.compare(password, user.password);
-                    console.log(results);
-
                     if(results){
                         return user as any;
                     }

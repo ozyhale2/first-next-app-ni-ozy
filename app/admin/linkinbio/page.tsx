@@ -1,8 +1,9 @@
+import Link from 'next/link'
 import React from 'react'
 
 const LinkInBioPage = () => {
   return (
-    <div>LinkInBioPage</div>
+    <Link href="linkinbio/create" className='btn btn-primary btn-sm'>Create</Link>
   )
 }
 
