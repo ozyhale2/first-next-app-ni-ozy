@@ -1,7 +1,6 @@
 'use server'
 
 import { getServerSession } from 'next-auth';
-import { redirect } from 'next/navigation';
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 
@@ -33,8 +32,6 @@ const createLinkInBio = async (data: FormData) => {
 
         console.log('linkInBio Added: ')
         console.log(linkInBio);
-
-        redirect('/admin/linkinbio/' + linkInBio.id)
     }
 }
 

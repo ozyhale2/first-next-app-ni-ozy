@@ -9,7 +9,7 @@ const CreateUI = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
 
-    const submitFrm = (data: FormData) => {
+    const submitHandler = (data: FormData) => {
         showModal(false)
         createLinkInBio(data);
         setName('')
@@ -22,7 +22,7 @@ const CreateUI = () => {
             <dialog id="my_modal_1" className={`modal ` + (isShowModal ? `modal-open` : ``)}>
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Create Link In Bio</h3>
-                    <form action={submitFrm}>
+                    <form action={submitHandler}>
                         <div className="relative z-0 w-full mb-6 group">
                             <input
                                 type="text"
