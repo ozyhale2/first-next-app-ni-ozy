@@ -3,6 +3,7 @@
 import { getServerSession } from 'next-auth';
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
+import { redirect } from 'next/navigation';
 
 const zCoerceStr = z.coerce.string();
 const zNum = z.number();
@@ -32,6 +33,8 @@ const createLinkInBio = async (data: FormData) => {
 
         console.log('linkInBio Added: ')
         console.log(linkInBio);
+
+        redirect('/admin/linkinbio/' + linkInBio.id)
     }
 }
 
