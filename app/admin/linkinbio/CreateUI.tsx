@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import createLinkInBio from "./CreateUIFunctions";
+import {createLinkInBio} from "./Functions";
 
 const CreateUI = () => {
 

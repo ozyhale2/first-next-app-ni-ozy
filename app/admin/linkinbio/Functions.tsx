@@ -5,7 +5,9 @@ import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 import { redirect } from 'next/navigation';
 
+const zCoerceNum = z.coerce.number();
 const zCoerceStr = z.coerce.string();
+
 const zNum = z.number();
 const prisma = new PrismaClient();
 
@@ -38,4 +40,14 @@ const createLinkInBio = async (data: FormData) => {
     }
 }
 
-export default createLinkInBio
+const getLinkInBio = async (id: number) => {
+    const linkInBio = await prisma.linkInBio.findUnique({
+        where: {
+            id: zCoerceNum.parse(id)
+        }
+    });
+
+    return linkInBio
+}
+
+export {createLinkInBio, getLinkInBio}

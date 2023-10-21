@@ -1,6 +1,7 @@
 import React from 'react'
 import CreateUI from './CreateUI'
 import { PrismaClient } from '@prisma/client';
+import Link from 'next/link';
 
 const prisma = new PrismaClient();
 let linkInBios = []
@@ -33,7 +34,7 @@ const LinkInBioPage = async () => {
                 <td>{linkInBio.slug}</td>
                 <td>
                   <button className='btn btn-error btn-xs'>Delete</button>&nbsp;
-                  <button className='btn btn-info btn-xs'>Edit</button>
+                  <Link href={`/admin/linkinbio/` + linkInBio.id} className='btn btn-info btn-xs'>Edit</Link>
                 </td>
               </tr>
             })}
