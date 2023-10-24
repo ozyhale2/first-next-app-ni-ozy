@@ -2,12 +2,17 @@ import React from 'react'
 import CreateUI from './CreateUI'
 import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
+import DeleteUI from './DeleteUI';
 
 const prisma = new PrismaClient();
 let linkInBios = []
 
 const LinkInBioPage = async () => {
-  const linkInBios = await prisma.linkInBio.findMany();
+  const linkInBios = await prisma.linkInBio.findMany({
+    where: {
+      deleted: false
+    }
+  });
 
   return (
     <>
@@ -33,7 +38,7 @@ const LinkInBioPage = async () => {
                 <td>{linkInBio.description}</td>
                 <td>{linkInBio.slug}</td>
                 <td>
-                  <button className='btn btn-error btn-xs'>Delete</button>&nbsp;
+                  <DeleteUI id={linkInBio.id} />
                   <Link href={`/admin/linkinbio/` + linkInBio.id} className='btn btn-info btn-xs'>Edit</Link>
                 </td>
               </tr>
