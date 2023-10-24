@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 import { redirect } from 'next/navigation';
+import { setMessage } from '@/app/components/flashMessage/FlashMessage';
 
 const zCoerceNum = z.coerce.number();
 const zCoerceStr = z.coerce.string();
@@ -36,7 +37,9 @@ const createLinkInBio = async (data: FormData) => {
         console.log('linkInBio Added: ')
         console.log(linkInBio);
 
-        redirect('/admin/linkinbio/' + linkInBio.id)
+        const token = await setMessage('Successfully Added a Link in Bio');
+
+        redirect('/admin/linkinbio/' + linkInBio.id + '?_fmt=' + token)
     }
 }
 
