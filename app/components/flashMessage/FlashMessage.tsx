@@ -23,8 +23,8 @@ const getMessageToken = () => {
 const setMessage = async (message: string) => {
     const token = await bcrypt.hash(message, 10);
 
-    cookies().set('FlashMessage', message);
-    cookies().set('FlashMessageToken', token);
+    cookies().set('FlashMessage', message, {maxAge: 1});
+    cookies().set('FlashMessageToken', token, {maxAge: 1});
 
     return token
 }

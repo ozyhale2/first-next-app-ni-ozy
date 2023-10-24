@@ -21,14 +21,14 @@ const createLinkInBio = async (data: FormData) => {
         }
     });
 
-    if(user){
+    if (user) {
         const name = zCoerceStr.parse(data.get('name'))
         const description = zCoerceStr.parse(data.get('description'))
         const userId = zNum.parse(user.id)
 
         const linkInBio = await prisma.linkInBio.create({
             data: {
-                name: name, 
+                name: name,
                 description: description,
                 ownerId: userId
             }
@@ -53,4 +53,23 @@ const getLinkInBio = async (id: number) => {
     return linkInBio
 }
 
-export {createLinkInBio, getLinkInBio}
+const updateLinkInBio = async (data: FormData) => {
+    const linkInBio = await prisma.linkInBio.update({
+        where: {
+            id: zCoerceNum.parse(data.get('id')),
+        },
+        data: {
+            name: zCoerceStr.parse(data.get('name')),
+            description: zCoerceStr.parse(data.get('name'))
+        },
+    })
+
+    console.log('linkInBio Updated: ')
+    console.log(linkInBio);
+
+    const token = await setMessage('Successfully Updated a Link in Bio');
+
+    redirect('/admin/linkinbio/' + linkInBio.id + '?_fmt=' + token)
+}
+
+export { createLinkInBio, getLinkInBio, updateLinkInBio }

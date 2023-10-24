@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react';
 import { z } from 'zod'
+import { updateLinkInBio } from './Functions';
 
-const zCoerceNum = z.coerce.number();
 const zCoerceStr = z.coerce.string();
 
 const EditUI = (props: {id: number, name: string, description: string | null}) => {
@@ -12,7 +12,8 @@ const EditUI = (props: {id: number, name: string, description: string | null}) =
 
     return (
         <>
-            <form className='w-1/3'>
+            <form action={updateLinkInBio} className='w-1/3'>
+                <input type="hidden" name="id" value={props.id} />
                 <div className="relative z-0 w-full mb-6 group">
                     <input
                         type="text"
