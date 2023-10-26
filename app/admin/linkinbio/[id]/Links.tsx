@@ -1,5 +1,6 @@
 import CreateUI from "./CreateUI"
 import { PrismaClient } from '@prisma/client';
+import EditUI from "./EditUI";
 
 const prisma = new PrismaClient();
 
@@ -7,17 +8,16 @@ const Links = async (props: { linkInBioId: number }) => {
 
     const linkRecords = await prisma.links.findMany({
         where: {
-          deleted: false,
-          linkInBioId: props.linkInBioId
+            deleted: false,
+            linkInBioId: props.linkInBioId
         }
-      });
+    });
 
     return (
         <>
             <CreateUI linkInBioId={props.linkInBioId} />
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -35,11 +35,11 @@ const Links = async (props: { linkInBioId: number }) => {
                                 <td>{linkRecord.link}</td>
                                 <td>
                                     <button className="btn btn-error btn-xs mr-1" type="button">Delete</button>
-                                    <button className="btn btn-info btn-xs" type="button">Edit</button>
+                                    <EditUI id={linkRecord.id} linkName={linkRecord.name} linkValue={linkRecord.link} />
                                 </td>
                             </tr>
                         })}
-                        
+
                     </tbody>
                 </table>
             </div>

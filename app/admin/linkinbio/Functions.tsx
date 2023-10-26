@@ -60,7 +60,7 @@ const updateLinkInBio = async (data: FormData) => {
         },
         data: {
             name: zCoerceStr.parse(data.get('name')),
-            description: zCoerceStr.parse(data.get('name'))
+            description: zCoerceStr.parse(data.get('description'))
         },
     })
 
