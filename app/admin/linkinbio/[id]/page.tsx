@@ -1,6 +1,7 @@
 import { getLinkInBio } from '../Functions';
 import EditUI from '../EditUI';
 import Links from './Links';
+import Link from 'next/link';
 
 const LinkInBioEditPage = async ({ params }: { params: { id: number } }) => {
     const linkInBio = await getLinkInBio(params.id);
@@ -8,6 +9,7 @@ const LinkInBioEditPage = async ({ params }: { params: { id: number } }) => {
     if (linkInBio) {
         return (
             <>
+                <Link href="/admin/linkinbio" className='btn btn-accent btn-sm mb-8' type="button">Back</Link>
                 <div className="grid grid-cols-3 gap-4">
                     <div>
                         <EditUI id={linkInBio.id} name={linkInBio.name} description={linkInBio.description} />
