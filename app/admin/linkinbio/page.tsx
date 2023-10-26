@@ -34,7 +34,9 @@ const LinkInBioPage = async () => {
                 <th>{linkInBio.id}</th>
                 <td>{linkInBio.name}</td>
                 <td>{linkInBio.description}</td>
-                <td>{linkInBio.slug}</td>
+                <td>
+                  <Link target='_tab' href={`/linkinbio/` + linkInBio.slug}>{linkInBio.slug}</Link>
+                </td>
                 <td>
                   <DeleteUI id={linkInBio.id} />
                   <Link href={`/admin/linkinbio/` + linkInBio.id} className='btn btn-info btn-xs'>Edit</Link>
