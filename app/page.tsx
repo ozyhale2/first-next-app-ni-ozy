@@ -2,6 +2,7 @@ import LoginButton from './components/LoginButton'
 import { getServerSession } from 'next-auth'
 import SessionProvider from './components/navBar/SessionProvider';
 import Link from 'next/link';
+import NavBar from './components/navBar/NavBar';
 
 export default async function Home() {
   const session = await getServerSession();
@@ -13,6 +14,7 @@ export default async function Home() {
 
   return (
     <>
+      <NavBar />
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div className="max-w-md">

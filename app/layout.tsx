@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import NavBar from './components/navBar/NavBar'
-import {FlashMessage} from './components/flashMessage/FlashMessage'
+import { FlashMessage } from './components/flashMessage/FlashMessage'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,11 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        <FlashMessage />
-        <div className='container m-4'>
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   )
