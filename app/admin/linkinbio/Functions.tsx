@@ -3,7 +3,7 @@
 import { getServerSession } from 'next-auth';
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
-import { redirect } from 'next/navigation';
+import { RedirectType, redirect } from 'next/navigation';
 import { setMessage } from '@/app/components/flashMessage/FlashMessage';
 
 const zCoerceNum = z.coerce.number();
@@ -39,7 +39,7 @@ const createLinkInBio = async (data: FormData) => {
 
         const token = await setMessage('Successfully Added a Link in Bio');
 
-        redirect('/admin/linkinbio/' + linkInBio.id + '?_fmt=' + token)
+        redirect('/admin/linkinbio/' + linkInBio.id + '?_fmt=' + token, RedirectType.push)
     }
 }
 
@@ -69,7 +69,7 @@ const updateLinkInBio = async (data: FormData) => {
 
     const token = await setMessage('Successfully Updated a Link in Bio');
 
-    redirect('/admin/linkinbio/' + linkInBio.id + '?_fmt=' + token)
+    redirect('/admin/linkinbio/' + linkInBio.id + '?_fmt=' + token, RedirectType.push)
 }
 
 const deleteLinkInBio = async (id: number) => {
@@ -87,7 +87,7 @@ const deleteLinkInBio = async (id: number) => {
 
     const token = await setMessage('Successfully Deleted a Link in Bio');
 
-    redirect('/admin/linkinbio/?_fmt=' + token)
+    redirect('/admin/linkinbio/?_fmt=' + token, RedirectType.push)
 }
 
 export { createLinkInBio, getLinkInBio, updateLinkInBio, deleteLinkInBio }

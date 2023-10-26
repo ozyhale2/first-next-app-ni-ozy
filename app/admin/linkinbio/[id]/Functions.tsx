@@ -1,6 +1,5 @@
 'use server'
 
-import { getServerSession } from 'next-auth';
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 import { redirect, RedirectType } from 'next/navigation';
@@ -30,7 +29,7 @@ const addLink = async (data: FormData) => {
 
     const token = await setMessage('Successfully Added a Link');
 
-    redirect('/admin/linkinbio/' + linkInBioId + '?_fmt=' + token)
+    redirect('/admin/linkinbio/' + linkInBioId + '?_fmt=' + token, RedirectType.push)
 }
 
 const updateLink = async (data: FormData) => {
@@ -52,35 +51,6 @@ const updateLink = async (data: FormData) => {
     redirect('/admin/linkinbio/' + linkObject.linkInBioId + '?_fmt=' + token, RedirectType.push)
 }
 
-const getLinkInBio = async (id: number) => {
-    const linkInBio = await prisma.linkInBio.findUnique({
-        where: {
-            id: zCoerceNum.parse(id)
-        }
-    });
-
-    return linkInBio
-}
-
-const updateLinkInBio = async (data: FormData) => {
-    const linkInBio = await prisma.linkInBio.update({
-        where: {
-            id: zCoerceNum.parse(data.get('id')),
-        },
-        data: {
-            name: zCoerceStr.parse(data.get('name')),
-            description: zCoerceStr.parse(data.get('name'))
-        },
-    })
-
-    console.log('linkInBio Updated: ')
-    console.log(linkInBio);
-
-    const token = await setMessage('Successfully Updated a Link in Bio');
-
-    redirect('/admin/linkinbio/' + linkInBio.id + '?_fmt=' + token)
-}
-
 const deleteLinkInBio = async (id: number) => {
     const linkInBio = await prisma.linkInBio.update({
         where: {
@@ -99,4 +69,4 @@ const deleteLinkInBio = async (id: number) => {
     redirect('/admin/linkinbio/?_fmt=' + token)
 }
 
-export { addLink, getLinkInBio, updateLink, deleteLinkInBio }
+export { addLink, updateLink }

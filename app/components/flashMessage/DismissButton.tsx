@@ -1,11 +1,11 @@
-import { redirect } from 'next/navigation'
+import { RedirectType, redirect } from 'next/navigation'
 import { z } from 'zod'
 
 const zCoerceStr = z.coerce.string();
 
 const dismiss = (formData: FormData) => {
     const pathname = formData.get('pathname');
-    redirect(zCoerceStr.parse(pathname))
+    redirect(zCoerceStr.parse(pathname), RedirectType.push)
 }
 
 const DismissButton = (props: { pathname: string | null }) => {
