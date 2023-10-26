@@ -3,9 +3,7 @@ import CreateUI from './CreateUI'
 import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
 import DeleteUI from './DeleteUI';
-
-const prisma = new PrismaClient();
-let linkInBios = []
+import prisma from '@/app/components/DB';
 
 const LinkInBioPage = async () => {
   const linkInBios = await prisma.linkInBio.findMany({

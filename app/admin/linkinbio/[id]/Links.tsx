@@ -2,8 +2,7 @@ import CreateUI from "./CreateUI"
 import { PrismaClient } from '@prisma/client';
 import EditUI from "./EditUI";
 import DeleteUI from "./DeleteUI";
-
-const prisma = new PrismaClient();
+import prisma from "@/app/components/DB";
 
 const Links = async (props: { linkInBioId: number }) => {
 

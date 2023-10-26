@@ -2,8 +2,8 @@ import React from 'react'
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import bcrypt from 'bcrypt'
+import prisma from '../components/DB';
 
-const prisma = new PrismaClient();
 const schema = z.coerce.string();
 
 async function login(data: FormData){

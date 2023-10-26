@@ -4,9 +4,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
+import prisma from "@/app/components/DB";
 
 const schema = z.coerce.string();
-const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
     // Configure one or more authentication providers

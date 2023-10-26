@@ -4,12 +4,10 @@ import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 import { redirect, RedirectType } from 'next/navigation';
 import { setMessage } from '@/app/components/flashMessage/FlashMessage';
+import prisma from '@/app/components/DB';
 
 const zCoerceNum = z.coerce.number();
 const zCoerceStr = z.coerce.string();
-
-const zNum = z.number();
-const prisma = new PrismaClient();
 
 const addLink = async (data: FormData) => {
     const name = zCoerceStr.parse(data.get('name'))

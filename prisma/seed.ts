@@ -1,7 +1,6 @@
+import prisma from '@/app/components/DB'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
-
-const prisma = new PrismaClient()
 
 async function main() {
     const superAdminRole = await prisma.role.upsert({
