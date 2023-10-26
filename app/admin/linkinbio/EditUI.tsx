@@ -46,7 +46,7 @@ const EditUI = (props: {id: number, name: string, description: string | null}) =
                     >Description</label>
                 </div>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Save</button>
             </form>
         </>
     )
