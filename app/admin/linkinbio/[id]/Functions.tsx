@@ -51,8 +51,8 @@ const updateLink = async (data: FormData) => {
     redirect('/admin/linkinbio/' + linkObject.linkInBioId + '?_fmt=' + token, RedirectType.push)
 }
 
-const deleteLinkInBio = async (id: number) => {
-    const linkInBio = await prisma.linkInBio.update({
+const deleteLink = async (id: number) => {
+    const link = await prisma.links.update({
         where: {
             id: id,
         },
@@ -61,12 +61,12 @@ const deleteLinkInBio = async (id: number) => {
         },
     })
 
-    console.log('linkInBio deleted: ')
-    console.log(linkInBio);
+    console.log('Link deleted: ')
+    console.log(link);
 
     const token = await setMessage('Successfully Deleted a Link in Bio');
 
-    redirect('/admin/linkinbio/?_fmt=' + token)
+    redirect('/admin/linkinbio/' + link.linkInBioId + '?_fmt=' + token)
 }
 
-export { addLink, updateLink }
+export { addLink, updateLink, deleteLink }

@@ -1,6 +1,7 @@
 import CreateUI from "./CreateUI"
 import { PrismaClient } from '@prisma/client';
 import EditUI from "./EditUI";
+import DeleteUI from "./DeleteUI";
 
 const prisma = new PrismaClient();
 
@@ -34,7 +35,7 @@ const Links = async (props: { linkInBioId: number }) => {
                                 <td>{linkRecord.name}</td>
                                 <td>{linkRecord.link}</td>
                                 <td>
-                                    <button className="btn btn-error btn-xs mr-1" type="button">Delete</button>
+                                    <DeleteUI id={linkRecord.id} />
                                     <EditUI id={linkRecord.id} linkName={linkRecord.name} linkValue={linkRecord.link} />
                                 </td>
                             </tr>
